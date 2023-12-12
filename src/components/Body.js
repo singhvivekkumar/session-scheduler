@@ -13,7 +13,6 @@ import ConfirmEmail from "./User/ConfirmEmail";
 const AppLayout = () => {
 	return (
 		<div>
-			<Header />
 			<Outlet />
 		</div>
 	);
@@ -22,6 +21,7 @@ const AppLayout = () => {
 const UserLayout = () => {
 	return (
 		<div>
+			<Header />
 			<Outlet />
 		</div>
 	);
@@ -46,7 +46,8 @@ const Body = () => {
 						{
 							path: "/main",
 							element:<ViewEvents/>
-						}
+						},
+						
 					]
 				},
 				{

@@ -3,6 +3,7 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
 import Booked from "./Booked";
+import { API_URL } from "../../config/server-config";
 
 const CreateEvent = () => {
 	const [successFull, setSuccessFull] = useState(false);
@@ -26,9 +27,9 @@ const CreateEvent = () => {
 		endDateTime: Yup.string().required(),
 	});
 
-	const handleSubmit = (values, helpers) => {
+	const handleSubmit = (values) => {
 		axios
-			.post("http://localhost:3002/api/calendar/create-event", values)
+			.post(`${API_URL}/create-event`, values)
 			.then((response) => {
 				console.log(response.data);
 				setSuccessFull(response.data.status === 200 ? true : false);

@@ -1,37 +1,42 @@
 import { Link } from "react-router-dom";
 import { FcGoogle } from "react-icons/fc";
 import axios from "axios";
+import { API_URL } from "../../config/server-config";
 
 const LoadingPage = () => {
+	const handleAuthentication = async () => {
+		try {
+			console.log("clicked", API_URL);
+			const response = await axios.get(API_URL);
+			console.log("clicked", response);
+			const url = await response.data;
 
-	const handleAuthentication = () => {
-		console.log("clicked");
-		axios
-			.get("http://localhost:3002/api/calendar")
-			.then((response) => {
-				const authUrl = response.data;
-				window.location = authUrl;
-			})
-			.catch((error) => {
-				if (error.response) {
-					console.log(error.response.data);
-					console.log(error.response.status);
-					console.log(error.response.headers);
-				} else if (error.request) {
-					console.log(error.request);
-				} else {
-					console.log("Error", error.message);
-				}
-				console.log(error.config);
-			})
-			.finally(()=> {
-				console.log("finally");
-			});
+			window.location(url);
 
-			
+		} catch (error) {
+			console.log(error)
+		}
+		// .then((response) => {
+		// 	console.log(response)
+		// 	const authUrl = response.data;
+		// 	window.location = authUrl;
+		// })
+		// .catch((error) => {
+		// 	if (error.response) {
+		// 		console.log(error.response.data);
+		// 		console.log(error);
+		// 		console.log(error.response.headers);
+		// 	} else if (error.request) {
+		// 		console.log(error.request);
+		// 	} else {
+		// 		console.log("Error", error.message);
+		// 	}
+		// 	console.log(error.config);
+		// })
+		// .finally(()=> {
+		// 	console.log("finally");
+		// });
 	};
-
-	
 
 	return (
 		<div className=" flex flex-col justify-center items-center">

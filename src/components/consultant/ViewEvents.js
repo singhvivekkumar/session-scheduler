@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import EventCard from "./EventCard";
 import axios from "axios";
-import { BACKEND_URI } from "../../utils/constant";
+import { API_URL } from "../../config/server-config";
 
 const ViewEvents = () => {
 	const [listAllEvents, setListAllEvents] = useState([]);
@@ -13,7 +13,7 @@ const ViewEvents = () => {
 
 	const ListEvents = async () => {
 		await axios
-			.get(BACKEND_URI+"/api/calendar/list-event")
+			.get(API_URL+"/list-event")
 			.then((response) => {
 				// console.log("by api",response?.data?.data?.items);
 				setListAllEvents(response?.data?.data?.items);
@@ -23,7 +23,7 @@ const ViewEvents = () => {
 	};
 
 	return listAllEvents?.length === 0 ? null : (
-		<div className=" bg-slate-100 flex flex-col md:flex-row flex-wrap justify-evenly space-y-6 md:px-10 p-4 items-baseline space-x-1 ">
+		<div className=" bg-slate-200 flex flex-col md:flex-row flex-wrap justify-evenly space-y-6 md:px-10 p-4 items-baseline space-x-1 ">
 			{listAllEvents?.map((item) => {
 				return <EventCard key={item?.id} props={item} />;
 			})}

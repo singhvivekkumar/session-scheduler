@@ -1,3 +1,5 @@
-export const CLIENT_ID= '534077157306-5ar8ae2e877k2cverq1m8hgj0v1bmrtc.apps.googleusercontent.com' 
-export const CLIENT_SECRET='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'
-export const REDIRECT_URL='http://localhost:3002/api/calendar/redirect'
+export const CLIENT_ID= process.env.REACT_APP_CLIENT_ID;
+export const CLIENT_SECRET= process.env.REACT_APP_CLIENT_SECRET;
+export const REDIRECT_URL= process.env.REACT_APP_REDIRECT_URL;
+export const API_URL= process.env.REACT_APP_API_URL;
+export const HOST_URL= process.env.REACT_APP_HOST_URL;

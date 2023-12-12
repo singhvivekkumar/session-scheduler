@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { API_URL, HOST_URL } from "../../config/server-config";
 
 const EventCard = ({ props }) => {
 	// const { summary } ={props}
@@ -9,7 +10,7 @@ const EventCard = ({ props }) => {
 
 	const handleDeleteEvent = (eventId) => {
 		axios
-			.delete("http://localhost:3002/api/calendar/delete-event/"+eventId)
+			.delete(`${API_URL}/delete-event/${eventId}`)
 			.then((response) => {
 				console.log(response.data, deleteOneEvent);
 				setDeleteOneEvent(false);
@@ -18,8 +19,8 @@ const EventCard = ({ props }) => {
 	};
 
 	const handleEventLink = async (eventId) => {
-		// const evnetLink1 = (URL, {});
-		const eventLink = "http://localhost:3000/singhvivek309/"+eventId;
+		const eventLink = `${HOST_URL}/singhvivek309/${eventId}`;
+		console.log(eventLink);
 		await navigator.clipboard.writeText(eventLink) ;
 	}
 
