@@ -9,9 +9,9 @@ const LoadingPage = () => {
 			console.log("clicked", API_URL);
 			const response = await axios.get(API_URL);
 			console.log("clicked", response);
-			const url = await response.data;
+			const url = await response.data.data.url;
 
-			window.location(url);
+			window.location = await url;
 
 		} catch (error) {
 			console.log(error)
