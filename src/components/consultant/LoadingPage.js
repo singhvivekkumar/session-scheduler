@@ -7,35 +7,13 @@ const LoadingPage = () => {
 	const handleAuthentication = async () => {
 		try {
 			console.log("clicked", API_URL);
-			const response = await axios.get(API_URL);
+			const response = await axios.get(`${API_URL}`);
 			console.log("clicked", response);
 			const url = await response.data.data.url;
-
-			window.location = await url;
-
+			window.location = url;
 		} catch (error) {
 			console.log(error)
 		}
-		// .then((response) => {
-		// 	console.log(response)
-		// 	const authUrl = response.data;
-		// 	window.location = authUrl;
-		// })
-		// .catch((error) => {
-		// 	if (error.response) {
-		// 		console.log(error.response.data);
-		// 		console.log(error);
-		// 		console.log(error.response.headers);
-		// 	} else if (error.request) {
-		// 		console.log(error.request);
-		// 	} else {
-		// 		console.log("Error", error.message);
-		// 	}
-		// 	console.log(error.config);
-		// })
-		// .finally(()=> {
-		// 	console.log("finally");
-		// });
 	};
 
 	return (

@@ -3,7 +3,7 @@ import React from "react";
 const EventScheduled = () => {
 	return (
 		<div>
-			<div>vivek added some schedule in this event </div>
+			<div>vivek will add some schedule in this event </div>
 		</div>
 	);
 };
