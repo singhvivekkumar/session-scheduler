@@ -4,15 +4,16 @@ import axios from "axios";
 import { API_URL } from "../../config/server-config";
 
 const LoadingPage = () => {
+
 	const handleAuthentication = async () => {
 		try {
 			console.log("clicked", API_URL);
-			const response = await axios.get(`${API_URL}`);
-			console.log("clicked", response);
-			const url = await response.data.data.url;
+			const response = await axios.get(`${API_URL}/auth`);
+			console.log("res", response);
+			const url = await response.data.data;
 			window.location = url;
 		} catch (error) {
-			console.log(error)
+			console.log(error);
 		}
 	};
 
@@ -47,8 +48,8 @@ const LoadingPage = () => {
 						By clicking continue, you agree to our
 						<Link to="/" className="text-gray-600">
 							Terms of Service
-						</Link>{" "}
-						and{" "}
+						</Link>
+							and
 						<Link to="/" className="text-gray-600">
 							Privacy Policy
 						</Link>

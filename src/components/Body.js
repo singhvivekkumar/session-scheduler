@@ -32,52 +32,50 @@ const Body = () => {
 		{
 			path: "/",
 			element: <AppLayout />,
-			errorElement: <Error/>,
+			errorElement: <Error />,
 			children: [
 				{
 					path: "/",
 					element: <LoadingPage />,
-					
 				},
 				{
-					path: "/main",
-					element: <MainContainer/>,
+					path: "/main/",
+					element: <MainContainer />,
 					children: [
 						{
-							path: "/main",
-							element:<ViewEvents/>
+							path: "/main/:id",
+							element: <ViewEvents />,
 						},
-						
-					]
+					],
 				},
 				{
 					path: "/createEvent",
-					element: <CreateEvent/>
-				}
+					element: <CreateEvent />,
+				},
 			],
 		},
 		{
 			path: "/singhvivek309/:id",
-			element: <UserLayout/>,
+			element: <UserLayout />,
 			children: [
 				{
-					path:"/singhvivek309/:id",
-					element: <UserView/>
+					path: "/singhvivek309/:id",
+					element: <UserView />,
 				},
 				{
-					path:"/singhvivek309/:id/enter-details",
-					element: <UserBooking/>
+					path: "/singhvivek309/:id/enter-details",
+					element: <UserBooking />,
 				},
 				{
-					path:"/singhvivek309/:id/booked",
-					element: <ConfirmEmail/>
+					path: "/singhvivek309/:id/booked",
+					element: <ConfirmEmail />,
 				},
-			]
+			],
 		},
 	]);
 	return (
 		<div>
-			<RouterProvider router={router} />
+				<RouterProvider router={router} />
 		</div>
 	);
 };

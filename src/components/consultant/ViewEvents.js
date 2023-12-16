@@ -2,24 +2,28 @@ import React, { useEffect, useState } from "react";
 import EventCard from "./EventCard";
 import axios from "axios";
 import { API_URL } from "../../config/server-config";
+import { useParams } from "react-router-dom";
 
 const ViewEvents = () => {
 	const [listAllEvents, setListAllEvents] = useState([]);
+	const { id } = useParams();
+	console.log("id :",id);
 
 	useEffect(() => {
 		ListEvents();
-	// eslint-disable-next-line react-hooks/exhaustive-deps
+// eslint-disable-next-line
 	}, []);
 
 	const ListEvents = async () => {
-		await axios
-			.get(API_URL+"/list-event")
-			.then((response) => {
-				// console.log("by api",response?.data?.data?.items);
-				setListAllEvents(response?.data?.data?.items);
-				console.log("state",listAllEvents)
-			})
-			.catch((error) => console.log(error.message));
+		try {
+			const response = await axios.get(`${API_URL}/calendar/list-event`, {
+				params: { id: id},
+			});
+			console.log("res :",response.data);
+			setListAllEvents(response?.data?.data?.items);
+		} catch (error) {
+			console.log(error);
+		}
 	};
 
 	return listAllEvents?.length === 0 ? null : (

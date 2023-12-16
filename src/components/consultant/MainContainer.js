@@ -2,6 +2,7 @@ import { BsCalendar2Plus } from "react-icons/bs";
 import { Link, Outlet } from "react-router-dom";
 
 const MainContainer = () => {
+
 	return (
 		<main className=" flex flex-col justify-center pt-4">
 
