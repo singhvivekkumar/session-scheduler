@@ -7,9 +7,8 @@ const LoadingPage = () => {
 
 	const handleAuthentication = async () => {
 		try {
-			console.log("clicked", API_URL);
 			const response = await axios.get(`${API_URL}/auth`);
-			console.log("res", response);
+			// console.log("res", response);
 			const url = await response.data.data;
 			window.location = url;
 		} catch (error) {
@@ -18,20 +17,20 @@ const LoadingPage = () => {
 	};
 
 	return (
-		<div className=" flex flex-col justify-center items-center">
-			<div className=" flex flex-col justify-center items-center ">
-				<h1 className=" text-[2.5rem] md:text-[4.5rem] font-semibold text-blue-600 py-8">
+		<main className=" h-full w-full px-32 py-16 space-y-10 ">
+			<section className=" h-full w-full ">
+				<h1 className=" h-full w-full text-[2.5rem] md:text-[4.5rem] text-center font-semibold text-blue-600 py-8">
 					Easy scheduling ahead
 				</h1>
-				<p className=" text-lg md:text-3xl text text-center text-sky-600 w-10/12 md:w-2/3 ">
-					Calendly is your scheduling automation platform for
+				<p className=" h-full w-full text-lg md:text-3xl text text-center text-sky-600 ">
+					<b>Get The Session</b> is your scheduling automation platform for
 					eliminating the back-and-forth emails to find the perfect
 					time — and so much more.
 				</p>
-			</div>
-			<div className="max-w-[280px] mx-auto">
-				<div className="flex flex-col items-center mt-[10vh]">
-					<h2 className="mb-5 text-gray-900 font-mono font-bold text-2xl">
+			</section>
+			<section className="h-full w-full mx-auto">
+				<div className=" px-48 flex flex-col justify-center items-center ">
+					<h2 className=" text-center mb-5 text-gray-900 font-mono font-bold text-2xl">
 						Log In
 					</h2>
 					<button
@@ -56,9 +55,8 @@ const LoadingPage = () => {
 						.
 					</p>
 				</div>
-			</div>
-			<div></div>
-		</div>
+			</section>
+		</main>
 	);
 };
 

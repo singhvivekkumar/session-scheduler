@@ -4,8 +4,11 @@ import * as Yup from "yup";
 import axios from "axios";
 import Booked from "./Booked";
 import { API_URL } from "../../config/server-config";
+import { useParams } from "react-router-dom";
 
 const CreateEvent = () => {
+	const { id } = useParams();
+	// console.log(id);
 	const [successFull, setSuccessFull] = useState(false);
 
 	const initialValues = {
@@ -29,13 +32,12 @@ const CreateEvent = () => {
 
 	const handleSubmit = (values) => {
 		axios
-			.post(`${API_URL}/create-event`, values)
+			.post(`${API_URL}/calendar/create-event`, values, {params: {id: id}})
 			.then((response) => {
-				console.log(response.data);
-				setSuccessFull(response.data.status === 200 ? true : false);
+				// console.log(response.data);
+				setSuccessFull(response.data.success);
 			})
 			.catch((error) => console.log(error.message));
-		console.log(values);
 	};
 
 	const CustomInputDate = (props) => (
@@ -45,13 +47,8 @@ const CreateEvent = () => {
 	return successFull ? (
 		<Booked />
 	) : (
-		<div className=" flex flex-col justify-center bg-slate-100 max-h-full ">
-			<div className="flex flex-col justify-center py-4 bg-white  border-b shadow-md">
-				<h1 className=" text-xl md:text-3xl font-semibold text-center ">
-					Add One-on-One Event Type
-				</h1>
-			</div>
-			<div className="flex justify-center space-y-5 border-2 bg-white my-8 md:mx-40 lg:mx-80 ">
+		<div className=" h-full w-full flex justify-center bg-slate-200 max-h-full ">
+			<div className=" h-full w-1/2  flex justify-center space-y-5 border-2 rounded-xl bg-white my-8 md:mx-40 lg:mx-80 ">
 				<Formik
 					initialValues={initialValues}
 					validationSchema={validationSchema}

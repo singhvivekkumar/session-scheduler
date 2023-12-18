@@ -1,5 +1,4 @@
 import React from "react";
-import Header from "./consultant/Header";
 import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
 import LoadingPage from "./consultant/LoadingPage";
 import MainContainer from "./consultant/MainContainer";
@@ -21,7 +20,6 @@ const AppLayout = () => {
 const UserLayout = () => {
 	return (
 		<div>
-			<Header />
 			<Outlet />
 		</div>
 	);
@@ -39,35 +37,35 @@ const Body = () => {
 					element: <LoadingPage />,
 				},
 				{
-					path: "/main/",
+					path: "/:id",
 					element: <MainContainer />,
 					children: [
 						{
-							path: "/main/:id",
+							path: "/:id/list-events",
 							element: <ViewEvents />,
 						},
+						{
+							path: "/:id/create-event",
+							element: <CreateEvent />,
+						},
 					],
-				},
-				{
-					path: "/createEvent",
-					element: <CreateEvent />,
 				},
 			],
 		},
 		{
-			path: "/singhvivek309/:id",
+			path: "/:id",
 			element: <UserLayout />,
 			children: [
 				{
-					path: "/singhvivek309/:id",
+					path: "/:id",
 					element: <UserView />,
 				},
 				{
-					path: "/singhvivek309/:id/enter-details",
+					path: "/:id/enter-details",
 					element: <UserBooking />,
 				},
 				{
-					path: "/singhvivek309/:id/booked",
+					path: "/:id/booked",
 					element: <ConfirmEmail />,
 				},
 			],
