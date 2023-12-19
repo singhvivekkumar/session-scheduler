@@ -7,17 +7,19 @@ import { useParams, useSearchParams } from "react-router-dom";
 import { API_URL } from "../../config/server-config";
 
 const UserBooking = () => {
-	const {id} = useParams();
+	const { id } = useParams();
+	// eslint-disable-next-line
 	const [searchParams, setSearchParams] = useSearchParams();
 	const eventId = searchParams.get("eventId");
 	console.log("id", eventId, searchParams, id);
 	const [successFull, setSuccessFull] = useState(false);
+	const [event, setEvent] = useState(null);
 
 	const initialValues = {
 		name: "",
 		email: "",
 		comment: "",
-		eventId: eventId
+		eventId: eventId,
 	};
 
 	const validationSchema = Yup.object().shape({
@@ -30,17 +32,22 @@ const UserBooking = () => {
 	});
 
 	const handleSubmit = (values) => {
-		console.log("values : ",values)
+		console.log("values : ", values);
 		axios
-			.patch(`${API_URL}/calendar/update-event`, values, { params: {id : id}})
+			.patch(`${API_URL}/calendar/update-event`, values, {
+				params: { id: id },
+			})
 			.then((response) => {
 				console.log(response.data);
+				setEvent(response.data.data);
 				setSuccessFull(response.data.success);
 			})
 			.catch((error) => console.log(error.message));
 	};
 
-	return successFull ? <ConfirmEmail /> :(
+	return successFull ? (
+		<ConfirmEmail props={event} />
+	) : (
 		<div className=" flex justify-center items-center md:pt-10">
 			<Formik
 				initialValues={initialValues}
@@ -63,19 +70,16 @@ const UserBooking = () => {
 									placeholder="Event Full Name"
 									className=" md:w-2/3 border-2 border-blue-500 rounded-md  focus:outline-none p-1 md:px-2 "
 								/>
-	
+
 								<ErrorMessage
 									name="name"
 									component="p"
 									className=" text-sm italic text-red-600  "
 								/>
-								
 							</div>
 
 							<div className=" flex flex-col md:w-96 justify-start items-baseline space-x-1 mb-5">
-								<label
-									htmlFor="email"
-									className=" uppercase ">
+								<label htmlFor="email" className=" uppercase ">
 									Email*
 								</label>
 								<Field
@@ -91,10 +95,9 @@ const UserBooking = () => {
 							</div>
 
 							<div className=" flex flex-col md:w-96 justify-start items-baseline space-x-1 mb-5">
-								<label
-									htmlFor="comment"
-									className="">
-									Please share anything that will help prepare for our meeting.
+								<label htmlFor="comment" className="">
+									Please share anything that will help prepare
+									for our meeting.
 								</label>
 								<Field
 									name="comment"
@@ -116,7 +119,6 @@ const UserBooking = () => {
 									className="border border-indigo-500 bg-indigo-500 text-white rounded-md px-4 py-2 m-2 transition duration-500 ease select-none hover:bg-indigo-600 focus:outline-none focus:shadow-outline visited:bg-green-600">
 									Schedule Event
 								</button>
-								
 							</div>
 						</Form>
 					);

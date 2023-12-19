@@ -27,7 +27,7 @@ const ViewEvents = () => {
 	};
 
 	return listAllEvents?.length === 0 ? null : (
-		<div className=" h-full w-full bg-slate-200 flex flex-col md:flex-row flex-wrap justify-evenly space-y-6 md:px-10 p-4 items-baseline space-x-1 ">
+		<div className=" min-h-[82vh] w-full bg-slate-200 flex flex-col md:flex-row flex-wrap justify-evenly space-y-6 md:px-10 p-4 items-baseline space-x-1 ">
 			{listAllEvents?.map((item) => {
 				return <EventCard key={item?.id} props={item} />;
 			})}

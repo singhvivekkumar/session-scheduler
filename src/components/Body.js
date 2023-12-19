@@ -11,17 +11,17 @@ import ConfirmEmail from "./User/ConfirmEmail";
 
 const AppLayout = () => {
 	return (
-		<div>
+		<>
 			<Outlet />
-		</div>
+		</>
 	);
 };
 
 const UserLayout = () => {
 	return (
-		<div>
+		<>
 			<Outlet />
-		</div>
+		</>
 	);
 };
 
@@ -71,11 +71,7 @@ const Body = () => {
 			],
 		},
 	]);
-	return (
-		<div>
-				<RouterProvider router={router} />
-		</div>
-	);
+	return <RouterProvider router={router} />;
 };
 
 export default Body;

@@ -4,7 +4,7 @@ import Header from "./Header";
 const MainContainer = () => {
 
 	return (
-		<main className=" flex flex-col justify-center pt-4">
+		<main className=" h-full w-full flex flex-col justify-center pt-4">
 			{/* section 1 */}
 			<Header/>
 
