@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import { FaUserAlt } from "react-icons/fa";
+import { API_URL } from "../../config/server-config";
 
 const Navbar = () => {
 	const { id } = useParams();
@@ -28,7 +29,7 @@ const Navbar = () => {
 	const userData = async () => {
 		try {
 			const response = await axios.get(
-				"http://localhost:3002/api/v1/auth/user",
+				`${API_URL}/auth/user`,
 				{ params: { id: id } }
 			);
 			// console.log(response.data.data);
