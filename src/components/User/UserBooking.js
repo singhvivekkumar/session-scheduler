@@ -3,19 +3,21 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
 import ConfirmEmail from "./ConfirmEmail";
-import { BACKEND_URI  } from "../../utils/constant";
-import { useParams } from "react-router-dom";
+import { useParams, useSearchParams } from "react-router-dom";
+import { API_URL } from "../../config/server-config";
 
 const UserBooking = () => {
 	const {id} = useParams();
-	console.log("tis is ",id)
+	const [searchParams, setSearchParams] = useSearchParams();
+	const eventId = searchParams.get("eventId");
+	console.log("id", eventId, searchParams, id);
 	const [successFull, setSuccessFull] = useState(false);
 
 	const initialValues = {
 		name: "",
 		email: "",
 		comment: "",
-		eventId: id
+		eventId: eventId
 	};
 
 	const validationSchema = Yup.object().shape({
@@ -27,18 +29,18 @@ const UserBooking = () => {
 			.required(),
 	});
 
-	const handleSubmit = (values, helpers) => {
+	const handleSubmit = (values) => {
 		console.log("values : ",values)
 		axios
-			.patch(BACKEND_URI+"/api/calendar/update-event", values)
+			.patch(`${API_URL}/calendar/update-event`, values, { params: {id : id}})
 			.then((response) => {
 				console.log(response.data);
-				setSuccessFull(response.data.status === 200 ? true : false);
+				setSuccessFull(response.data.success);
 			})
 			.catch((error) => console.log(error.message));
 	};
 
-	return successFull ? <ConfirmEmail/> :(
+	return successFull ? <ConfirmEmail /> :(
 		<div className=" flex justify-center items-center md:pt-10">
 			<Formik
 				initialValues={initialValues}

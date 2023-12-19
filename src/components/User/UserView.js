@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
 import UserCalendar from "./UserCalendar";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useSearchParams } from "react-router-dom";
 import axios from "axios";
+import { API_URL, HOST_URL } from "../../config/server-config";
 
-function fliterEvent(searchEventId, eventList) {
+function fliterEvent(eventId, eventList) {
 	const data = eventList.find((event) => {
-		return event.id.includes(searchEventId);
+		return event.id.includes(eventId);
 	});
 	console.log("data", data);
 	return data;
@@ -13,7 +14,11 @@ function fliterEvent(searchEventId, eventList) {
 
 const UserView = () => {
 	const { id } = useParams();
-	
+// eslint-disable-next-line
+	const [searchParams, setSearchParams] = useSearchParams();
+	const eventId = searchParams.get("eventId");
+	console.log("id", eventId, searchParams, id);
+
 	const [currentEvents, setCurrentEvents] = useState("");
 
 	let events;
@@ -25,19 +30,18 @@ const UserView = () => {
 
 	const ListEvents = async () => {
 		await axios
-			.get("http://localhost:3002/api/calendar/list-event")
+			.get(`${API_URL}/calendar/list-event`, {
+				params: { id: id },
+			})
 			.then((response) => {
+				console.log(response.data.data.items);
 				const ListEvents = response?.data?.data?.items;
-				const event = fliterEvent(id, ListEvents);
+				const event = fliterEvent(eventId, ListEvents);
 				setCurrentEvents(event);
 			})
 			.catch((error) => console.log(error.message))
-			.finally(() => {	
-				
-			});
+			.finally(() => {});
 	};
-
-	
 
 	// earlier return
 	if (currentEvents === "") {
@@ -50,7 +54,7 @@ const UserView = () => {
 			title: currentEvents.summary,
 			start: currentEvents.start.dateTime,
 			end: currentEvents.end.dateTime,
-		}
+		},
 	];
 
 	return (
@@ -90,8 +94,11 @@ const UserView = () => {
 							/> */}
 							<UserCalendar events={events} />
 						</div>
-						<Link to={`/singhvivek309/${id}/enter-details`}>
-						<button className=" absolute right-0 top-0 bg-blue-600 p-2 rounded-full active:bg-blue-700 px-4  text-white ">Next</button></Link>
+						<Link to={`${HOST_URL}/booking/${id}/enter-details?eventId=${eventId}`}>
+							<button className=" absolute right-0 top-0 bg-blue-600 p-2 rounded-full active:bg-blue-700 px-4  text-white ">
+								Next
+							</button>
+						</Link>
 					</div>
 				</div>
 			</div>

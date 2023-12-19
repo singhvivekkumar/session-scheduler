@@ -53,19 +53,19 @@ const Body = () => {
 			],
 		},
 		{
-			path: "/:id",
+			path: "/booking/:id",
 			element: <UserLayout />,
 			children: [
 				{
-					path: "/:id",
+					path: "/booking/:id",
 					element: <UserView />,
 				},
 				{
-					path: "/:id/enter-details",
+					path: "/booking/:id/enter-details",
 					element: <UserBooking />,
 				},
 				{
-					path: "/:id/booked",
+					path: "/booking/:id/booked",
 					element: <ConfirmEmail />,
 				},
 			],
