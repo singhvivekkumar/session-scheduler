@@ -34,7 +34,7 @@ const EventCard = ({ props }) => {
 	return (
 		<div className={"max-w-md w-1/4 p-6 bg-white rounded-lg shadow-lg"}>
 			{deleteOneEvent ? (
-				<h4>This item is successfully deleted</h4>
+				<h4>This item is deleted successfully.</h4>
 			) : (
 				<>
 					<h1 className="text-xl font-semibold text-left text-gray-500 mt-8 mb-6">

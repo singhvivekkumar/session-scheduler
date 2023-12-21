@@ -1,5 +1,6 @@
 {
 	"plugins": [
+		["transform-remove-console", { "exclude": [ "error", "warn"] }],
 		["@babel/plugin-proposal-private-property-in-object", { "loose": true }]
 	],
 	"presets": [

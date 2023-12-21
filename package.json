@@ -52,6 +52,7 @@
     ]
   },
   "devDependencies": {
+    "babel-plugin-transform-remove-console": "^6.9.4",
     "tailwindcss": "^3.3.3"
   }
 }
