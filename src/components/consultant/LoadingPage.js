@@ -17,19 +17,19 @@ const LoadingPage = () => {
 	};
 
 	return (
-		<main className=" h-full w-full px-32 py-16 space-y-10 ">
+		<main className=" h-full w-full px-4 lg:px-32 py-16  space-y-10 ">
 			<section className=" h-full w-full ">
-				<h1 className=" h-full w-full text-[2.5rem] md:text-[4.5rem] text-center font-semibold text-blue-600 py-8">
+				<h1 className=" h-full w-full text-4xl md:text-5xl lg:text-6xl text-center font-semibold text-blue-600 py-8">
 					Easy scheduling ahead
 				</h1>
-				<p className=" h-full w-full text-lg md:text-3xl text text-center text-sky-600 ">
+				<p className=" h-full w-full text-2xl md:text-2xl text text-center text-sky-600 ">
 					<b>Get The Session</b> is your scheduling automation platform for
 					eliminating the back-and-forth emails to find the perfect
 					time — and so much more.
 				</p>
 			</section>
 			<section className="h-full w-full mx-auto">
-				<div className=" px-48 flex flex-col justify-center items-center ">
+				<div className=" px-8 md:px-48 flex flex-col justify-center items-center ">
 					<h2 className=" text-center mb-5 text-gray-900 font-mono font-bold text-2xl">
 						Log In
 					</h2>

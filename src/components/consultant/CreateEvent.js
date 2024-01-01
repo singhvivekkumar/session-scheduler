@@ -48,7 +48,7 @@ const CreateEvent = () => {
 		<Booked />
 	) : (
 		<div className=" h-full w-full flex justify-center bg-slate-200 max-h-full ">
-			<div className=" h-full w-1/2  flex justify-center space-y-5 border-2 rounded-xl bg-white my-8 md:mx-40 lg:mx-80 ">
+			<div className=" h-full w-full md:w-1/2  flex justify-center space-y-5 border-2 rounded-xl bg-white my-8 md:mx-40 lg:mx-80 ">
 				<Formik
 					initialValues={initialValues}
 					validationSchema={validationSchema}

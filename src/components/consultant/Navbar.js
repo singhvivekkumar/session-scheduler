@@ -39,7 +39,7 @@ const Navbar = () => {
 		}
 	};
 	return (
-		<div className=" h-full w-full border-b-2 pb-2 border-slate-200 flex  justify-between items-center px-2 md:px-20 lg:px-60">
+		<div className=" h-full w-full border-b-2 pb-2 border-slate-200 flex  justify-between items-center px-16 md:px-28 lg:px-40 xl:px-60">
 			{/* col 1 */}
 			<div className="">
 				<span className=" text-xl  md:text-3xl font-semibold">

@@ -16,7 +16,7 @@ const EventCard = ({ props }) => {
 				`${API_URL}/calendar/delete-event/${eventId}`,
 				{params: { id: id }}
 			);
-			console.log(response.data, deleteOneEvent);
+			console.log(response.data);
 			setDeleteOneEvent(response.data.success);
 			setPending(false)
 		} catch (error) {
@@ -32,7 +32,7 @@ const EventCard = ({ props }) => {
 	};
 
 	return (
-		<div className={"max-w-md w-1/4 p-6 bg-white rounded-lg shadow-lg"}>
+		<div className={" w-full md:w-1/2 lg:w-1/3 xl:w-1/4 p-6 bg-white rounded-lg shadow-lg"}>
 			{deleteOneEvent ? (
 				<h4>This item is deleted successfully.</h4>
 			) : (
